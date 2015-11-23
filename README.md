@@ -36,8 +36,18 @@ Tisan论坛链接：[http://bbs.elecfans.com/zhuti_820_1.html](http://bbs.elecfa
 ![tft-tisan-conn](pic/tft-tisan-connect.JPG)  
 
 # 在WebIDE上创建产品  
+## 创建产品并添加组件   
+![webide0](pic/webide1.jpg)  
 
+## 进行自定义组件  
+![webide1](pic/webide2.jpg)  
 
+## 编辑自定义组件  
+![webide0](pic/webide3.jpg)  
+ 修改Label
+![webide0](pic/webide4.jpg)  
+
+添加完后，保存。
 
 # 固件开发  
 在固件开发的IDE上导入下载的 tisan-demo 的源代码，如图：  
