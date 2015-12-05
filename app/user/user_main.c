@@ -19,6 +19,8 @@
 #include "wifi_config.h"
 #include "../pando/pando_framework.h"
 #include "objects/usart_gpu.h"
+#include "objects/humiture.h"
+#include "objects/temperature.h"
 
 static void ICACHE_FLASH_ATTR
 user_key_long_press_cb()
@@ -42,6 +44,8 @@ void user_init(void)
 	// add you object init here.
 	//led_object_init();
 	usart_gpu_object_init();
+	temperature_object_init();
+	humiture_object_init();
 
 	pando_framework_init();
 }

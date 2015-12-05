@@ -33,6 +33,7 @@ temperature_get(struct temperature* value) {
 	DHT_Sensor_Data output;
     peri_dht_read(&output);
     value->centigrade = output.temperature;
+    PRINTF("\ncentigrade:%d\n", (int)(value->centigrade*100));
 }
 /*
 	auto generated code below!!
@@ -79,7 +80,7 @@ void ICACHE_FLASH_ATTR
 temperature_object_init() {
 	temperature_init();
 	pando_object temperature_object = {
-		1,
+		2,
 		temperature_object_pack,
 		temperature_object_unpack,
 	};

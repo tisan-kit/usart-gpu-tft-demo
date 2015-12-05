@@ -79,7 +79,7 @@ void ICACHE_FLASH_ATTR
 humiture_object_init() {
 	humiture_init();
 	pando_object humiture_object = {
-		1,
+		3,
 		humiture_object_pack,
 		humiture_object_unpack,
 	};
