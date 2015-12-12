@@ -21,9 +21,11 @@ void set_usart_gpu_content(void);
 uint8* ICACHE_FLASH_ATTR
 peri_usart_gpu_get()
 {
-    uint8* dat;
+    //uint8* dat;
+	if(show_message_str == NULL)
+		return NULL;
 
-    return dat;
+    return show_message_str;
 }
 
 void ICACHE_FLASH_ATTR

@@ -33,7 +33,19 @@ usart_gpu_get(struct usart_gpu* value) {
 	// TODO: implement object get  function here
 	// get function retrieve hardware status and assign it to value.
 
+	if(peri_usart_gpu_get() != NULL)
+	{
+		int len = os_strlen(peri_usart_gpu_get());
+		value->Content = (uint8_t *)os_malloc( len + 1);
+		value->Content[len] = '\0';
+		os_memcpy(value->Content, peri_usart_gpu_get(), len );
+	}
+	else
+	{
+		value->Content = NULL;
+	}
 
+	PRINTF("\ngpu_get:%s\n", value->Content);
 }
 /*
 	auto generated code below!!
@@ -59,11 +71,18 @@ usart_gpu_object_pack(PARAMS * params) {
 
 	struct usart_gpu* usart_gpu = create_usart_gpu();
 	usart_gpu_get(usart_gpu);
+	uint16_t len = os_strlen(usart_gpu->Content);
 
-//	if (add_next_char*(params, usart_gpu->Content)){
-//		PRINTF("Add next param failed.\n");
-//		return;
-//	}
+	if (add_next_bytes(params, len+1, usart_gpu->Content)){
+		PRINTF("Add next param failed.\n");
+		return;
+	}
+//
+	if(usart_gpu->Content != NULL)
+	{
+		os_free(usart_gpu->Content);
+		usart_gpu->Content = NULL;
+	}
 
 	delete_usart_gpu(usart_gpu);
 }

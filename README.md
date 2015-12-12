@@ -65,7 +65,7 @@ Tisan论坛链接：[http://bbs.elecfans.com/zhuti_820_1.html](http://bbs.elecfa
 ![add-object](pic/firmware2.jpg)  
 
 ## 5.2.1 usart_gpu 外设驱动开发  
-为了支持object的功能，需要进行相应的外设驱动开发。本应用涉及到串口应用（串口1），会调用串口1的发送功能。  外设驱动的方法大概可以参考其他现有外设驱动开发的模式来套，具体是实现object里面的get和set需要调用的方法，负责与将控制指令在外设上实现。
+为了支持object的功能，需要进行相应的外设驱动开发。本应用涉及到串口应用（串口1），会调用串口1的发送功能。  新的外设驱动开发的可以参考其他现有外设驱动代码，具体是实现object里面的get和set方法，负责将控制指令在外设上实现。
 步骤1 添加两个文件 peri_usart_gpu.c 和 peri_usart_gpu.h， 如图：  
 ![periferal-1](pic/firmware3.jpg)  
 
@@ -234,13 +234,13 @@ usart_gpu_set(struct usart_gpu* value) {
 添加温湿度对象的代码，这里不再详细讲述，注意object 编号一定要跟WebIDE上的一致。  
 
 
-##  5.4 处理user.main.c 文件  
-在 user_main.c 文件里引用新组件头文件：    
+##  5.4 处理user_main.c 文件  
+在 user_main.c 文件里引用新对象头文件：    
 ```c  
 #include "objects/usart_gpu.h"  
 ```  
 
-并在入口函数 user_init(void) 里面添加初始化组件函数： usart_gpu_boject_init()  ：  
+并在入口函数 user_init(void) 里面添加初始化对象函数： usart_gpu_boject_init()  ：  
 
 ```c  
 void user_init(void)
