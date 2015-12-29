@@ -36,13 +36,14 @@ usart_gpu_get(struct usart_gpu* value) {
 	if(peri_usart_gpu_get() != NULL)
 	{
 		int len = os_strlen(peri_usart_gpu_get());
-		value->Content = (uint8_t *)os_malloc( len + 1);
-		value->Content[len] = '\0';
+		value->Content = (uint8_t *)os_malloc( len);
+		//value->Content[len] = '\0';
 		os_memcpy(value->Content, peri_usart_gpu_get(), len );
 	}
 	else
 	{
-		value->Content = NULL;
+		value->Content =  (uint8_t *)os_malloc(1);
+		value->Content[0] = ' ';
 	}
 
 	PRINTF("\ngpu_get:%s\n", value->Content);
@@ -73,7 +74,7 @@ usart_gpu_object_pack(PARAMS * params) {
 	usart_gpu_get(usart_gpu);
 	uint16_t len = os_strlen(usart_gpu->Content);
 
-	if (add_next_bytes(params, len+1, usart_gpu->Content)){
+	if (add_next_uri(params, len, usart_gpu->Content)){
 		PRINTF("Add next param failed.\n");
 		return;
 	}
